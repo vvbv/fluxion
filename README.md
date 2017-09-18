@@ -1,4 +1,8 @@
-<p align="center"><img src="https://github.com/FluxionNetwork/fluxion/blob/master/logos/logo2.jpg?raw=true" /></p>
+<p align="center"><img src="https://github.com/vvbv/fluxion-classic/blob/master/logos/fluxion-classic.png" /></p>
+
+# Fluxion-Classic
+
+This's a fork of the classic and simple Fluxion version. ^_^ My next objetive is make this with a better organization and compatibility with more wireless cards. 
 
 # Fluxion is the future of MITM WPA attacks
 Fluxion is a remake of linset by vk496 with (hopefully) less bugs and more functionality. It's compatible with the latest release of Kali (rolling). The attack is mostly manual, but experimental versions will automatically handle most functionality from the stable releases.
@@ -24,7 +28,7 @@ This is how the script works. The fake captive portal is set up by the script it
 The MAC address of the fake access point differs by one octet from the original in order to prevent fluxion deauthenticating clients from itself during the session. 
 
 ## Installation
-``` wget https://raw.githubusercontent.com/FluxionNetwork/fluxion/master/install/install.sh && bash install.sh ```
+We'll provide more and better information soon.
 
 ## Updates
 If you want to submit a feature, do so by labeling your issue as an "enhancement" or submit a PR. I don't have enough time to make daily changes to fluxion, sorry.
