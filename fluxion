@@ -95,12 +95,7 @@ airmon
 # Check Updates
 function checkupdatess {
 
-	revision_online="$(timeout -s SIGTERM 20 curl "https://raw.githubusercontent.com/FluxionNetwork/fluxion/master/fluxion" 2>/dev/null| grep "^revision" | cut -d "=" -f2)"
-	if [ -z "$revision_online" ]; then
-		echo "?">$DUMP_PATH/Irev
-	else
-		echo "$revision_online">$DUMP_PATH/Irev
-	fi
+	echo "$revision_online">$DUMP_PATH/Irev
 
 }
 
@@ -400,13 +395,14 @@ if [ $FLUX_DEBUG != 1 ]; then
            sleep 0.01 && echo -e "         ║▒      │▒║__   │▒└_┘▒    /▒/\▒\    │☢╫   │▒└╧┘▒   ║█ \▒█║    "
            sleep 0.01 && echo -e "         ⌡▓      ⌡◘▒▓▒   ⌡◘▒▓▒◘   └▓/  \▓┘   ⌡▓╝   ⌡◙▒▓▒◙   ⌡▓  \▓┘    "
            sleep 0.01 && echo -e "        ¯¯¯     ¯¯¯¯¯¯  ¯¯¯¯¯¯¯  ¯¯¯    ¯¯¯ ¯¯¯¯  ¯¯¯¯¯¯¯  ¯¯¯¯¯¯¯¯  "
+		   sleep 0.01 && echo -e "                                   CLASSIC                          "
 
 	echo""
 
 	sleep 0.1
 	echo -e $red"                     FLUXION "$white""$version" (rev. "$green "$revision"$white") "$yellow"by "$white" ghost"
 	sleep 0.1
-	echo -e $green "           Page:"$red"https://github.com/FluxionNetwork/fluxion  "$transparent
+	echo -e $green "           Page:"$red"https://github.com/vvbv/fluxion-classic  "$transparent
 	sleep 0.1
 	echo -n "                              Latest rev."
 	tput civis
@@ -414,32 +410,6 @@ if [ $FLUX_DEBUG != 1 ]; then
 	spinner "$!"
 	revision_online=$(cat $DUMP_PATH/Irev)
 	echo -e ""$white" [${purple}${revision_online}$white"$transparent"]"
-		if [ "$revision_online" != "?" ]; then
-
-			if [ "$revision" -lt "$revision_online" ]; then
-				echo
-				echo
-				echo -ne $red"            New revision found! "$yellow
-                echo -ne "Update? [Y/n]: "$transparent
-				read -N1 doupdate
-				echo -ne "$transparent"
-                doupdate=${doupdate:-"Y"}
-				if [ "$doupdate" = "Y" ]; then
-
-					cp $0 $HOME/flux_rev-$revision.backup
-					curl "https://raw.githubusercontent.com/FluxionNetwork/fluxion/master/fluxion" -s -o $0
-
-					echo
-					echo
-					echo -e ""$red"
-	Updated successfully! Restarting the script to apply the changes ..."$transparent""
-					sleep 3
-					chmod +x $0
-					exec $0
-                    exit
-				fi
-			fi
-		fi
 	echo ""
 	tput cnorm
 	sleep 1
