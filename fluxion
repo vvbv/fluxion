@@ -1382,7 +1382,8 @@ function ConnectionRESET {
 			echo -e "      "$red"["$yellow"$n"$red"]"$transparent" Login-Xfinity[Login-Xfinity] ";n=` expr $n + 1`
 			echo -e "      "$red"["$yellow"$n"$red"]"$transparent" Telekom ";n=` expr $n + 1`
 			echo -e "      "$red"["$yellow"$n"$red"]"$transparent" Google";n=` expr $n + 1`
-      echo -e "      "$red"["$yellow"$n"$red"]"$transparent" MOVISTAR     [ESP]";n=`expr $n + 1`
+      		echo -e "      "$red"["$yellow"$n"$red"]"$transparent" MOVISTAR     [ESP]";n=`expr $n + 1`
+			echo -e "      "$red"["$yellow"$n"$red"]"$transparent" EMCALI     [ESP]";n=`expr $n + 1`
 			echo -e "      "$red"["$yellow"$n"$red"]"$transparent"\e[1;31m $general_back"$transparent""
 			echo
 			echo -n "#? "
@@ -1811,11 +1812,15 @@ function ConnectionRESET {
 				google
 				break
 
-      elif [ "$webconf" = "44" ]; then
-        MOVISTAR_ES
-        break
+			elif [ "$webconf" = "44" ]; then
+				MOVISTAR_ES
+				break
 
 			elif [ "$webconf" = "45" ]; then
+				EMCALI_ES
+				break
+
+			elif [ "$webconf" = "46" ]; then
 				conditional_clear
 				webinterface
 				break
@@ -2543,6 +2548,11 @@ function google {
 function MOVISTAR_ES {
   	mkdir $DUMP_PATH/data &>$flux_output_device
   	cp -r $WORK_DIR/sites/movistar_esp/* $DUMP_PATH/data
+  }
+
+function EMCALI_ES {
+  	mkdir $DUMP_PATH/data &>$flux_output_device
+  	cp -r $WORK_DIR/sites/emcali_esp/* $DUMP_PATH/data
   }
 
 
